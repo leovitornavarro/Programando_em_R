@@ -1,0 +1,3 @@
+This lessons come from the Swirl Course 'R Programming' and were translated by Leo Vitor Navarro.
+Essas lições são do curso 'R Programming' do Swirl e foram traduzidas por Leo Vitor Navarro
+Ano: 2021

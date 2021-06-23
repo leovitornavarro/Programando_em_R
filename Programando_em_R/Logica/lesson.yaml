@@ -1,0 +1,320 @@
+- Class: meta
+  Course: Programando em R
+  Lesson: Lógica
+  Author: Sean Kross (Tradução por Leo Vitor Navarro)
+  Type: Standard
+  Organization: swirlstats
+  Version: 2.2.15
+
+- Class: text
+  Output: Essa lição busca apresentar brevemente operações lógicas no R.
+
+- Class: text
+  Output: Há dois valores lógicos no R, também chamados de valores boolean. Eles se resumem a TRUE (verdadeiro) ou FALSE (falso). 
+    No R, você pode construir operações lógicas que resultam em TRUE ou FALSE.
+
+- Class: text
+  Output: Muitas perguntas nessa lição envolverão a avaliação de expressões lógicas. 
+    Talvez seja interessante abrir um novo terminal do R para testar essas expressões.
+
+- Class: cmd_question
+  Output: A fim de se criar expressões lógicas, são necessários operadores lógicos. Você já deve estar acostumado 
+    com operadores aritméticos como `+`, `-`, `*`, e `/`. O primeiro operador lógico que iremos averiguar
+    é o operador de equalidade, representado por dois sinais de igual juntos `==`. Use o operador de equalidade
+    para descobrir se TRUE é igual a TRUE.
+  CorrectAnswer: TRUE == TRUE
+  AnswerTests: omnitest(correctExpr='TRUE == TRUE')
+  Hint: Digite TRUE == TRUE.
+
+- Class: text
+  Output: Assim como em aritmética, operadores lógicos podem ser agrupados entre parênteses a fim de que a expressão inteira
+   (TRUE == TRUE) == TRUE seja equivalente a TRUE. 
+
+- Class: cmd_question
+  Output: Para testar essa propriedade, tente averiguar (FALSE == TRUE) == FALSE .
+  CorrectAnswer: (FALSE == TRUE) == FALSE
+  AnswerTests: omnitest(correctExpr='(FALSE == TRUE) == FALSE')
+  Hint: Digite (FALSE == TRUE) == FALSE.
+
+- Class: cmd_question
+  Output: O operador de equalidade também pode ser usado para comparar números. Use `==` para ver se 6 é igual a 7.
+  CorrectAnswer: 6 == 7
+  AnswerTests: omnitest(correctExpr='6 == 7')
+  Hint: Digite 6 == 7 
+
+- Class: text
+  Output: A expressão anterior resulta em FALSE pois 6 é menor do que 7. Felizmente, há
+    operadores de inequalidade que possibilitam  testar se um valor é menor ou maior do que outro.
+
+- Class: cmd_question
+  Output: O operador 'menos que' `<` testa se o número do lado esquerdo do operador (chamado de operando esquerdo)
+    é menor do que o número do lado direito do operador (chamado de operando direito).
+    Escreva uma operação que teste se 6 é menor do que 7.
+  CorrectAnswer: 6 < 7
+  AnswerTests: omnitest(correctExpr='6 < 7')
+  Hint: Digite 6 < 7
+
+- Class: cmd_question
+  Output: Há também o operador 'menor ou igual a' `<=` que testa se o operando esquerdo 
+    é menor que ou igual ao operando direito. Escreva uma operação que teste se 10 é menor ou igual a 10.
+  CorrectAnswer: 10 <= 10
+  AnswerTests: omnitest(correctExpr='10 <= 10')
+  Hint: Digite 10 <= 10
+
+- Class: text
+  Output: Observe que também há os operadores 'maior que' `>` e 'maior que ou igual a'
+    `>=`.
+
+- Class: mult_question
+  Output: Qual das expressões resulta em FALSE?
+  CorrectAnswer: 9 >= 10
+  AnswerChoices: 9 >= 10; 7 == 7; 6 < 8; 0 > -36 
+  AnswerTests: omnitest(correctVal='9 >= 10')
+  Hint: Caso necessário, você pode avaliar cada expressão em uma sessão separada do R.
+
+- Class: mult_question
+  Output: Qual das expressões resulta em TRUE?
+  CorrectAnswer: 9 >= 10
+  AnswerChoices: 9 >= 10; 7 == 9; 57 < 8; -6 > -7 
+  AnswerTests: omnitest(correctVal='-6 > -7')
+  Hint: Caso necessário, você pode avaliar cada expressão em uma sessão separada do R.
+
+- Class: cmd_question
+  Output: O próximo operador é o 'diferente de' representado por `!=`. Ele testa se dois
+    valores são distintos, então TRUE != FALSE resulta em TRUE. Como o operador de equalidade, `!=` também pode
+    ser usado com números. Escreva uma expressão que teste se 5 é diferente de 7.
+  CorrectAnswer: 5 != 7
+  AnswerTests: omnitest(correctExpr='5 != 7')
+  Hint: Digite 5 != 7
+
+- Class: cmd_question
+  Output: Para negar expressões do tipo boolean (que resultam em verdadeiro ou falso) você pode usar o operador ‘NOT’ (NÃO). Um ponto de exclamação ‘!’ fará com que !TRUE (não verdadeiro) resulte em FALSE e !FALSE (não falso) resulte em TRUE. Tente usar o operador NOT e o operador de equalidade para descobrir o oposto de se 5 é igual a 7.
+  CorrectAnswer: '!5 == 7'
+  AnswerTests: any_of_exprs('!5 == 7', '!(5 == 7)')
+  Hint: Negue a expressão 5 == 7 (é necessário apenas um ponto de exclamação no início).
+
+- Class: text
+  Output: Vamos revisar. O operador de equalidade `==` testa se duas expressões do tipo boolean são iguais,
+    o operador 'diferente de' `!=` testa se duas expressões do tipo boolean são distintas, e o operador NOT `!` nega
+    expressões lógicas, fazendo com que expressões TRUE se transformem em FALSE e expressões FALSE se transformem em TRUE.
+
+- Class: mult_question
+  Output: Qual das expressões resulta em FALSE?
+  CorrectAnswer: "!(0 >= -1)"
+  AnswerChoices: "!(0 >= -1); !FALSE; 7 != 8; 9 < 10"
+  AnswerTests: omnitest(correctVal='!(0 >= -1)')
+  Hint: Caso necessário, você pode avaliar cada expressão em uma sessão separada do R.
+
+- Class: mult_question
+  Output: Qual será o resultado da expressão (TRUE != FALSE) == !(6 == 7)?
+  CorrectAnswer: TRUE
+  AnswerChoices: TRUE; FALSE; Existe verdade objetiva na programação?; %>%
+  AnswerTests: omnitest(correctVal='TRUE')
+  Hint: Avalie cada parcela da expressão separadamente e depois junte tudo.
+
+- Class: text
+  Output: Em algum momento será necessário avaliar como múltiplas expressões lógicas se relacionam.
+    Então, os operadores AND (e) e OR (ou) entram em jogo.
+
+- Class: cmd_question
+  Output: Observe como o operador AND funciona. Há dois operadores AND no R, `&` e `&&`.
+    Ambos funcionam similarmente, se os operandos direto e esquerdo de AND são ambos TRUE, a expressão
+    inteira é TRUE, do contrário é FALSE. Por exemplo, TRUE & TRUE resulta em TRUE. Tente digitar
+    FALSE & FALSE e veja o resultado.
+  CorrectAnswer: FALSE & FALSE
+  AnswerTests: omnitest(correctExpr='FALSE & FALSE')
+  Hint:  Digite FALSE & FALSE
+
+- Class: cmd_question
+  Output: Você pode usar o operador `&` para avaliar AND sobre um vetor. A versão `&&` de AND apenas avalia 
+    o primeiro membro de um vetor. Vamos testá-las. Digite TRUE & c(TRUE, FALSE, FALSE).
+  CorrectAnswer: "TRUE & c(TRUE, FALSE, FALSE)"
+  AnswerTests: omnitest(correctExpr='TRUE & c(TRUE, FALSE, FALSE)')
+  Hint: Digite TRUE & c(TRUE, FALSE, FALSE)
+
+- Class: text
+  Output: O que acontece nesse caso é que o operando esquerdo `TRUE` é reciclado
+    através de todo elemento do vetor do operando direito. Esse estatuto é equivalente a
+    c(TRUE, TRUE, TRUE) & c(TRUE, FALSE, FALSE). 
+
+- Class: cmd_question
+  Output: Agora vamos digitar a mesma expressão, mas usando o operador `&&`. Digite a expressão TRUE && c(TRUE, FALSE, FALSE).
+  CorrectAnswer: "TRUE && c(TRUE, FALSE, FALSE)"
+  AnswerTests: omnitest(correctExpr='TRUE && c(TRUE, FALSE, FALSE)')
+  Hint: Digite TRUE && c(TRUE, FALSE, FALSE).
+
+- Class: text
+  Output: Nesse caso, o operando esquerdo só é avaliado junto ao primeiro membro
+     do operando direito (o vetor). O resto dos elementos no vetor 
+     não avaliados nessa expressão.
+    
+- Class : text
+  Output: O operador OR segue um conjunto de regras semelhantes. A versão `|` do OR
+    avalia o OR por todo o vetor, enquanto a versão `||` do OR só avalia
+    o primeiro membro de um vetor.
+
+- Class : text
+  Output: Uma expressão usando o operador OR resultará em TRUE se o operando
+    esquerdo ou o operando direito forem TRUE. Se ambos forem TRUE, a expressão
+    resultará em TRUE, mas se nenhum for TRUE, então a expressão será
+    FALSE.
+    
+- Class: cmd_question
+  Output: Vamos testar a versão vetorizada do operador OR. Digite a 
+    expressão TRUE | c(TRUE, FALSE, FALSE).
+  CorrectAnswer: "TRUE | c(TRUE, FALSE, FALSE)"
+  AnswerTests: omnitest(correctExpr='TRUE | c(TRUE, FALSE, FALSE)')
+  Hint: Teste o operador vetorizado OR digitando TRUE | c(TRUE, FALSE, FALSE).
+  
+- Class: cmd_question
+  Output: Agora vamos tentar usar a versão não-vetorizada do operador OR. Digite a
+    expressão TRUE || c(TRUE, FALSE, FALSE).
+  CorrectAnswer: "TRUE || c(TRUE, FALSE, FALSE)"
+  AnswerTests: omnitest(correctExpr='TRUE || c(TRUE, FALSE, FALSE)')
+  Hint: Note que a versão || do OR não é vetorizada. Digite TRUE || c(TRUE, FALSE, FALSE)
+  
+- Class : text
+  Output: Operadores lógicos podem ser unidos da mesma forma que operadores aritméticos.
+    As expressões `6 != 10 && FALSE && 1 >= 2` ou `TRUE || 5 < 9.3 || FALSE` são perfeitamente normais.
+  
+- Class : cmd_question
+  Output: Como você deve se lembrar, a aritmética tem uma ordem de operações assim como as expressões lógicas. Todos os operadores AND são avaliados antes dos operadores OR. Vamos observar
+    um exemplo de um caso ambíguo. Digite 5 > 8 || 6 != 8 && 4 > 3.9.
+  CorrectAnswer: "5 > 8 || 6 != 8 && 4 > 3.9"
+  AnswerTests: omnitest(correctExpr='5 > 8 || 6 != 8 && 4 > 3.9')
+  Hint: Veja como a ordem das operações funciona digitando 5 > 8 || 6 != 8 && 4 > 3.9.
+  
+- Class : text
+  Output: Vamos observar a ordem de operações no caso anterior. Primeiramente, 
+    os operandos esquerdo e direito do operador AND são avaliados. 6 não é igual ao 8 e
+    4 é maior que 3.9, logo ambos operadores são TRUE e a expressão gerada
+    `TRUE && TRUE` resulta em TRUE. Então, o operando esquerdo do operador OR é avaliado e, como 5 não é maior que 8, a expressão inteira resulta em FALSE || TRUE. 
+    Como o operador direito dessa expressão é TRUE, a expressão inteira resulta em TRUE.
+    
+- Class: mult_question
+  Output: Qual das expressões seguintes resulta em TRUE?
+  CorrectAnswer: "TRUE && FALSE || 9 >= 4 && 3 < 6"
+  AnswerChoices: "TRUE && FALSE || 9 >= 4 && 3 < 6; TRUE && 62 < 62 && 44 >= 44; 99.99 > 100 || 45 < 7.3 || 4 != 4.0; FALSE || TRUE && FALSE"
+  AnswerTests: omnitest(correctVal='TRUE && FALSE || 9 >= 4 && 3 < 6')
+  Hint:  Tente avaliar cada expressão isoladamente e formule uma resposta.
+  
+- Class: mult_question
+  Output: Qual das expressões seguintes resulta em FALSE?
+  CorrectAnswer: "FALSE && 6 >= 6 || 7 >= 8 || 50 <= 49.5"
+  AnswerChoices: "FALSE && 6 >= 6 || 7 >= 8 || 50 <= 49.5; FALSE || TRUE && 6 != 4 || 9 > 4; !(8 > 4) ||  5 == 5.0 && 7.8 >= 7.79; 6 >= -9 && !(6 > 7) && !(!TRUE)"
+  AnswerTests: omnitest(correctVal='FALSE && 6 >= 6 || 7 >= 8 || 50 <= 49.5')
+  Hint:  Tente avaliar cada expressão isoladamente e formule uma resposta.
+  
+- Class : text
+  Output: Agora que você está familiarizado com os operadores lógicos do R, você pode usar
+      algumas funções que o R fornece para lidar com expressões lógicas.
+ 
+- Class : cmd_question
+  Output: A função isTRUE() requer um argumento. Se esse argumento resultar em
+    TRUE, a função retornará TRUE. Se não, a função retornará FALSE.
+    Tente usar a função digitando isTRUE(6 > 4).
+  CorrectAnswer: "isTRUE(6 > 4)"
+  AnswerTests: omnitest(correctExpr='isTRUE(6 > 4)')
+  Hint: Teste isTRUE() digitando isTRUE(6 > 4).
+  
+- Class: mult_question
+  Output: Qual das expressões seguintes resulta em TRUE?
+  CorrectAnswer: "!isTRUE(4 < 3)"
+  AnswerChoices: "isTRUE(!TRUE); isTRUE(3); isTRUE(NA); !isTRUE(4 < 3); !isTRUE(8 != 5)"
+  AnswerTests: omnitest(correctVal='!isTRUE(4 < 3)')
+  Hint: isTRUe() só retornará TRUE se a instrução concedida a ele como um argumento for TRUE.
+
+- Class : cmd_question
+  Output: A função identical() retornará TRUE se os dois objetos R concedidos a ele como argumentos 
+     forem idênticos. Teste a função identical() digitando identical('twins', 'twins').
+  CorrectAnswer: "identical('twins', 'twins')"
+  AnswerTests: omnitest(correctExpr="identical('twins', 'twins')")
+  Hint: Se você quiser ver se dois objetos R são idênticos, digite identical('twins', 'twins').
+  
+- Class: mult_question
+  Output: Qual das expressões seguintes resulta em TRUE?
+  CorrectAnswer: "identical(5 > 4, 3 < 3.1)"
+  AnswerChoices: "identical(5 > 4, 3 < 3.1); identical(4, 3.1); identical('hello', 'Hello'); !identical(7, 7)"
+  AnswerTests: omnitest(correctVal='identical(5 > 4, 3 < 3.1)')
+  Hint: identical() só resultará em TRUE se seus argumentos forem exatamente iguais.
+  
+- Class : cmd_question
+  Output: Você deveria também prestar atenção na função xor(), que precisa de dois argumentos.
+     A função xor() significa exclusivamente OR. Se um argumento resultar em TRUE e outro argumento resultar em FALSE, então essa
+     função retornará TRUE, se não ela retornará FALSE. Teste a função xor()
+     digitando xor(5 == 6, !FALSE).
+  CorrectAnswer: "xor(5 == 6, !FALSE)"
+  AnswerTests: omnitest(correctExpr='xor(5 == 6, !FALSE)')
+  Hint: Teste a função xor() digitando xor(5 == 6, !FALSE).
+  
+- Class : text
+  Output: 5 == 6 resulta em FALSE e !FALSE resulta em TRUE, então xor(FALSE, TRUE)
+   resulta em TRUE. Por outro lado, se o primeiro argumento for modificado para 5 == 5 e o segundo argumento não ser alterado, ambos argumentos seriam TRUE, e xor(TRUE, TRUE) resulta em FALSE.
+    
+- Class: mult_question
+  Output: Qual das expressões seguintes resulta em FALSE?
+  CorrectAnswer: "xor(4 >= 9, 8 != 8.0)"
+  AnswerChoices: "xor(4 >= 9, 8 != 8.0); xor(!isTRUE(TRUE), 6 > -1); xor(identical(xor, 'xor'), 7 == 7.0); xor(!!TRUE, !!FALSE)"
+  AnswerTests: omnitest(correctVal='xor(4 >= 9, 8 != 8.0)')
+  Hint: Para xor() resultar em TRUE, um argumento precisa ser TRUE e o outro  precisa ser FALSE.
+  
+- Class : cmd_question
+  Output: Para as questões seguintes, vamos precisar criar um vetor de
+     números inteiros chamado ints. Crie esse vetor digitando ints <- sample(10).
+  CorrectAnswer: "ints <- sample(10)"
+  AnswerTests: omnitest(correctExpr='ints <- sample(10)')
+  Hint: Para criar um vetor de dez números inteiros sem substituição, digite ints <- sample(10).
+  
+- Class : cmd_question
+  Output: Agora simplesmente exiba o conteúdo de ints.
+  CorrectAnswer: "ints"
+  AnswerTests: omnitest(correctExpr='ints')
+  Hint: Para ver o vetor, digite ints.
+  
+- Class : cmd_question
+  Output: O vetor `ints` é uma mistura aleatória de números inteiros de 1 a 10 sem substituição. 
+     Vamos dizer que gostaríamos de perguntar algumas questões lógicas sobre o conteúdo de ints. Se digitarmos ints > 5,  receberemos um vetor lógico avaliando se cada elemento de ints é maior do que 5. Tente digitar ints > 5.
+  CorrectAnswer: "ints > 5"
+  AnswerTests: omnitest(correctExpr='ints > 5')
+  Hint: Para ver quais elementos do `ints` são maiores do que 5, digite ints > 5.
+  
+- Class : text
+  Output: Nós podemos usar o vetor lógico resultante para perguntar outras questões sobre ints. A função which() usa um vetor lógico como argumento e retorna os índices do vetor que são TRUE. Por exemplo, which(c(TRUE, FALSE, TRUE)) retornaria o vetor c(1,3).
+
+- Class : cmd_question
+  Output: Use a função which() para encontrar os índices de ints que são maiores do que 7.
+  CorrectAnswer: "which(ints > 7)"
+  AnswerTests: omnitest(correctExpr='which(ints > 7)')
+  Hint: Use a função which() no vetor lógico produzido, digite `ints > 7`.
+  
+- Class: mult_question
+  Output: Qual dos seguintes comandos retorna os índices dos elementos de ints que são menores ou iguais a 2?
+  CorrectAnswer: "which(ints <= 2)"
+  AnswerChoices: "ints < 2; ints <= 2; which(ints < 2); which(ints <= 2)"
+  AnswerTests: omnitest(correctVal='which(ints <= 2)')
+  Hint: Use a função which().
+  
+- Class : text
+  Output: Como a função which(), as funções any() e all() utilizam os vetores lógicos como seu argumento. A função any() retornará TRUE se um ou mais dos elementos no vetor lógico for TRUE. A função all() retornará TRUE se todos os elementos no vetor lógico forem TRUE.
+    
+- Class : cmd_question
+  Output: Use a função any() para ver se algum dos elementos do ints é menor do que zero.
+  CorrectAnswer: "any(ints < 0)"
+  AnswerTests: omnitest(correctExpr='any(ints < 0)')
+  Hint: Use a função any() no vetor lógico produzido, digite`ints < 0`.
+  
+- Class : cmd_question
+  Output: Use a função all() para ver se todos os elementos do ints são maiores do que zero.
+  CorrectAnswer: "all(ints > 0)"
+  AnswerTests: omnitest(correctExpr='all(ints > 0)')
+  Hint: Use a função all() no vetor lógico produzido, digite `ints > 0`.
+  
+- Class: mult_question
+  Output: Qual das expressões resulta em TRUE?
+  CorrectAnswer: "any(ints == 10)"
+  AnswerChoices: "any(ints == 10); all(ints == 10); all(c(TRUE, FALSE, TRUE)); any(ints == 2.5)"
+  AnswerTests: omnitest(correctVal='any(ints == 10)')
+  Hint: any() resultará em TRUE se houver um ou mais elementos TRUE no vetor lógico.
+  
+- Class : text
+  Output: Isso é tudo para essa introdução à lógica no R.
