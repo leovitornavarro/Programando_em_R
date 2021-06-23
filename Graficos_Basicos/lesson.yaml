@@ -1,0 +1,199 @@
+- Class: meta
+  Course: Programando em R
+  Lesson: Gráficos Básicos
+  Author: David Kane (Tradução por Leo Vitor Navarro)
+  Type: Standard
+  Organization: Williams College
+  Version: 0.1.1
+
+- Class: text
+  Output: Uma das vantagens do R em relação a outras linguagens de programação é a facilidade em criar gráficos de alta qualidade. Nesta lição, você aprenderá sobre gráficos base. 
+
+- Class: text
+  Output: Não falaremos sobre os pormenores mais avançados sobre gráficos nesta lição, como lattice, ggplot2 and ggvis.
+
+- Class: text
+  Output: Há quem siga pelo caminho inverso e ensine ggplot2 primeiro. Acesse http://varianceexplained.org/r/teach_ggplot2_to_beginners/ para entender esse ponto de vista.
+
+- Class: cmd_question
+  Output: Carregue os dados inclusos em um data frame com data(cars).
+  CorrectAnswer: data(cars)
+  AnswerTests: omnitest(correctExpr='data(cars)')
+  Hint: Digite data(cars).
+
+- Class: text
+  Output: Para fixar, vamos trabalhar com data frames simples. Nosso objetivo será conhecer diversas funções e seus argumentos. Todos os resultados seriam mais interessantes se utilizados grandes conjuntos de dados.
+
+- Class: cmd_question
+  Output: Busque a função de ajuda para cars.
+  CorrectAnswer: ?cars
+  AnswerTests: any_of_exprs('?cars', 'help(cars)', 'help("plot")')
+  Hint: Digite ?cars or help(cars).
+
+- Class: text
+  Output: Como você pode observar, cars tem apenas duas variáveis, são elas speed e stopping distance. Note que os dados são da década de 20.
+
+- Class: cmd_question
+  Output: Utilize head() em cars.
+  CorrectAnswer: head(cars)
+  AnswerTests: omnitest(correctExpr='head(cars)')
+  Hint: Digite head(cars).
+
+- Class: text
+  Output: Antes de criar o gráfico, é sempre útil conhecer os dados. Comandos úteis do R com essa finalidade são dim(), names(), head(), tail() e summary().
+
+- Class: cmd_question
+  Output: Utilize o comando plot() no data frame cars. 
+  CorrectAnswer: plot(cars)
+  AnswerTests: omnitest(correctExpr='plot(cars)')
+  Hint: Digite plot(cars).
+
+- Class: text
+  Output: O R sempre tentará fornecer uma resposta plausível para as informações fornecidas. Primeiramente, o R nota que o data frame tem apenas duas colunas, então o programa assume que você deseja traçar uma contra a outra.
+
+- Class: text
+  Output: Posteriormente, visto que não oferecemos rótulos a nenhum dos eixos, o R utiliza o nome das colunas para nomeá-los. Então, ele cria marcas de escala com números redondos e os nomeia respectivamente. Por fim, ele utiliza os argumentos padrão de plot().
+
+- Class: text
+  Output: Exploraremos a função plot, porém muitos dos tópicos que discutiremos aqui se aplicam a muitas funções relacionadas a gráficos no R. Observe que 'plot' é uma abreviação de scatterplot (gráfico de dispersão).
+
+- Class: cmd_question
+  Output: Busque a função de ajuda para plot(). 
+  CorrectAnswer: ?plot
+  AnswerTests: any_of_exprs('?plot', 'help(plot)')
+  Hint: Digite ?plot ou help(plot).
+
+- Class: text
+  Output: A página de ajuda para plot() exemplifica os diferentes argumentos que a função pode utilizar. As mais importantes são x e y, as variáveis que serão moldadas no gráfico. Para as próximas perguntas, inclua os nomes dos argumentos em sua resposta. Isto é, não digite plot(cars$speed, cars$dist), mesmo que essa expressão funcione. Em vez disso, use plot(x = cars$speed, y = cars$dist).
+
+- Class: cmd_question
+  Output: Use plot() para mostrar 'speed' no eixo x e 'dist' no eixo y para o data frame 'cars'. Use a forma do comando plot na qual vetores são especificamente usados como argumentos para x e y.
+  CorrectAnswer: plot(x = cars$speed, y = cars$dist)
+  AnswerTests: omnitest(correctExpr='plot(x = cars$speed, y = cars$dist)')
+  Hint: Digite plot(x = cars$speed, y = cars$dist).
+
+- Class: text
+  Output: Note que isso produz uma sutil diferença em relação plot(cars). Nesse caso, o R não tem certeza do que você quer utilizar como rótulo para o eixo, então ele utiliza os argumentos que você fornece, com o nome do data frame e '$' inclusos.
+
+- Class: text
+  Output: Note que há outras formas de utilizar o comando plot usando a "fórmula" da interface. Por exemplo, podemos criar um gráfico parecido com o acima através de plot(dist ~ speed, cars). No entanto, somente usaremos a fórmula de interface mais tarde na lição.
+
+- Class: cmd_question
+  Output: Use plot() para mostrar 'dist' no eixo x e 'speed' no eixo x do data frame 'cars'. Isso é o oposto do que fizemos anteriormente.
+  CorrectAnswer: plot(x = cars$dist, y = cars$speed)
+  AnswerTests: omnitest(correctExpr='plot(x = cars$dist, y = cars$speed)')
+  Hint: Digite plot(x = cars$dist, y = cars$speed).
+
+- Class: text
+  Output: Provavelmente faz mais sentido 'speed' estar no eixo x, visto que distância de parada é uma função de velocidade. Então, para o resto das questões nessa parte da lição, sempre coloque os argumentos de acordo.
+  
+- Class: text
+  Output: Na verdade, você pode assumir que as respostas para as próximas questões são todas da forma plot(x = cars$speed, y = cars$dist, …), mas com vários argumentos usados em lugar de...
+
+- Class: cmd_question
+  Output: Recrie o gráfico com o rótulo do eixo x como "Speed".
+  CorrectAnswer: plot(x = cars$speed, y = cars$dist, xlab = "Speed")
+  AnswerTests: omnitest(correctExpr='plot(x = cars$speed, y = cars$dist, xlab = "Speed")')
+  Hint: Digite plot(x = cars$speed, y = cars$dist, xlab = "Speed") para criar o gráfico.
+
+- Class: cmd_question
+  Output: Recrie o gráfico com o rótulo do eixo y como "Stopping Distance".
+  CorrectAnswer: plot(x = cars$speed, y = cars$dist, ylab = "Stopping Distance")
+  AnswerTests: omnitest(correctExpr='plot(x = cars$speed, y = cars$dist, ylab = "Stopping Distance")')
+  Hint: Digite plot(x = cars$speed, y = cars$dist, ylab = "Stopping Distance") para criar o gráfico.
+
+- Class: cmd_question
+  Output: Recrie o gráfico com "Speed" e "Stopping Distance" como rótulos dos eixos.
+  CorrectAnswer: plot(x = cars$speed, y = cars$dist, xlab = "Speed", ylab = "Stopping Distance")
+  AnswerTests: omnitest(correctExpr='plot(x = cars$speed, y = cars$dist, xlab = "Speed", ylab = "Stopping Distance")')
+  Hint: Digite plot(x = cars$speed, y = cars$dist, xlab = "Speed", ylab = "Stopping Distance") para criar o gráfico.
+
+- Class: text
+  Output: A razão para plots(cars) ter funcionado no começo da lição foi pelo R ser inteligente o suficiente para perceber que o primeiro elemento (i.e., a primeira coluna) em cars deveria ser designado para o argumento x e o segundo elemento para o argumento y. Para ser mais ágil, o próximo conjunto de respostas será da forma plot(cars, …) com vários argumentos adicionados.
+  
+- Class: text
+  Output: Para cada questão, trabalharemos com apenas um argumento adicional por vez. Você pode adicionar mais de um argumento ao fazer um projeto real.
+  
+- Class: cmd_question
+  Output: Use plot em cars com o título principal de "My Plot". Note que o argumento para o título principal é "main" e não "title".
+  CorrectAnswer: plot(cars, main = "My Plot")
+  AnswerTests: omnitest(correctExpr='plot(cars, main = "My Plot")')
+  Hint: Digite plot(cars, main = "My Plot") para criar o gráfico.
+
+- Class: cmd_question
+  Output: Crie um gráfico de cars com o subtítulo "My Plot Subtitle".
+  CorrectAnswer: plot(cars, sub = "My Plot Subtitle")
+  AnswerTests: omnitest(correctExpr='plot(cars, sub = "My Plot Subtitle")')
+  Hint: Digite plot(cars, sub = "My Plot Subtitle").
+
+- Class: text
+  Output: A página de ajuda do plot (?plot) só abrange um pequeno número dos vários argumentos que podem ser usados em plot() e em outras funções gráficas. Para começar a explorar as várias outras opções, busque por ?par. Vamos olhar alguns dos mais usados comumente. Continue usando plot(cars, …) como base para as respostas dessas questões.
+  
+- Class: cmd_question
+  Output: Use plot em cars e deixe os pontos do gráfico vermelhos. (Use col = 2 para esse efeito.) 
+  CorrectAnswer: plot(cars, col = 2)
+  AnswerTests: omnitest(correctExpr='plot(cars, col = 2)')
+  Hint: Digite plot(cars, col = 2) para criar o gráfico.
+
+- Class: cmd_question
+  Output: Use plot em cars e limite o eixo x de 10 a 15. (Use xlim = c(10, 15) para esse efeito.)
+  CorrectAnswer: plot(cars, xlim = c(10, 15))
+  AnswerTests: omnitest(correctExpr='plot(cars, xlim = c(10, 15))')
+  Hint: Digite plot(cars, xlim = c(10, 15)).
+
+- Class: text
+  Output: Você também pode mudar o formato dos símbolos no gráfico. A página de ajuda de points (?points) fornece os detalhes.
+
+- Class: cmd_question
+  Output: Use plot em cars e faça com que o gráfico utilize triângulos. (Use pch = 2 para atingir esse efeito.)
+  CorrectAnswer: plot(cars, pch = 2)
+  AnswerTests: omnitest(correctExpr='plot(cars, pch = 2)')
+  Hint: Digite plot(cars, pch = 2).
+
+- Class: text
+  Output: Argumentos como "col" e "pch" podem não parecer muito intuitivos. E isso ocorre porque eles não o são! Então, a maioria das pessoas usam os pacotes mais modernos, como o ggplot2, para criar seus gráficos no R.
+  
+- Class: text
+  Output: É, no entanto, útil aprender pelo menos uma introdução aos gráficos básicos, visto que vários dos idiomas em lattice e ggplot2 são modelados a partir deles.
+
+- Class: text
+  Output: Agora, vamos observar algumas outras funções em gráficos básicos que podem ser úteis, começando com boxplots.
+  
+- Class: cmd_question
+  Output: Carregue o dataframe de mtcars.
+  CorrectAnswer: data(mtcars)
+  AnswerTests: omnitest(correctExpr='data(mtcars)')
+  Hint: Digite data(mtcars).
+
+- Class: text
+  Output: Toda vez que você criar um novo data frame, você deve explorá-lo antes de usá-lo. No meio de uma lição do Swirl, apenas digite play(). Isso suspende a lição temporariamente (sem perder o trabalho que você já fez) e permite com que você utilize comandos como dim(mtcars) e head(mtcars). Ao terminar de examinar as informações, apenas digite nxt() e a lição irá continuar de onde você estava. 
+  
+- Class: cmd_question
+  Output: Busque a página de ajuda de boxplot(). 
+  CorrectAnswer: ?boxplot
+  AnswerTests: any_of_exprs('?boxplot', 'help(boxplot)')
+  Hint: Digite ?boxplot or help(boxplot). 
+
+- Class: text
+  Output: Ao invés de adicionar colunas de informações diretamente como argumentos, da forma que fizemos com plot(), é mais simples adicionar o data frame inteiro. Isso é o que o argumento "data" no boxplot() permite.
+  
+- Class: text
+  Output: O boxplot (), como várias funções do R, também requer um argumento "formula", geralmente uma expressão com um til ("~") que indica que a relação entre os inputs é variável. Isso permite que você insira algo como mpg ~ cyl para criar um gráfico que contenha cyl (número de cilindros) no eixo-x e mpg (milhas por galão) no eixo-y.
+
+- Class: cmd_question
+  Output: Use boxplot() com formula = mpg ~ cyl e data = mtcars para criar um diagrama de caixa.
+  CorrectAnswer: boxplot(formula = mpg ~ cyl, data = mtcars)
+  AnswerTests: omnitest(correctExpr='boxplot(formula = mpg ~ cyl, data = mtcars)')
+  Hint: Digite boxplot(formula = mpg ~ cyl, data = mtcars).
+
+- Class: text
+  Output: O gráfico mostra que mpg é muito menor para carros com mais cilindros. Note que podemos usar os mesmos argumentos que exploramos com plot() para inserir rótulos de eixos, títulos e afins.
+
+- Class: text
+  Output: Para observarmos uma única variável, histogramas são ferramentas muito úteis. O hist() é a função no R. Como plot(), hist() é melhor quando usada com um único vetor. 
+
+- Class: cmd_question
+  Output: Use hist() com o vetor mtcars$mpg para criar um histograma.
+  CorrectAnswer: hist(mtcars$mpg)
+  AnswerTests: any_of_exprs('hist(mtcars$mpg)', 'hist(x = mtcars$mpg)')
+  Hint: Type hist(mtcars$mpg).
